@@ -1,10 +1,8 @@
 class SymbolTable:
     def __init__(self):
         self.symbols = {}
-
-        self.initialize()
-
         self.next_variable = 16
+        self.initialize()
 
     def initialize(self):
         self.symbols["SP"] = 0
@@ -12,7 +10,6 @@ class SymbolTable:
         self.symbols["ARG"] = 2
         self.symbols["THIS"] = 3
         self.symbols["THAT"] = 4
-
         self.symbols["SCREEN"] = 16384
         self.symbols["KBD"] = 24576
 
@@ -29,13 +26,8 @@ class SymbolTable:
         return self.symbols[symbol]
 
     def add_variable(self, symbol):
-        if self.contains(symbol):
-            return self.get_address(symbol)
+        if not self.contains(symbol):
+            self.symbols[symbol] = self.next_variable
+            self.next_variable += 1
 
-        address = self.next_variable
-
-        self.symbols[symbol] = address
-
-        self.next_variable += 1
-
-        return address
+        return self.symbols[symbol]
