@@ -4,6 +4,8 @@
 
 https://github.com/lwticias-lelet/assembler
 
+**Link do video** https://youtu.be/NxN0SsebOfo?si=RcNeAMj8x-JZJ6EO
+
 **Disciplina:** Compiladores / Arquitetura de Computadores
 
 **Projeto:** Project 6 – Hack Assembler
@@ -12,7 +14,7 @@ https://github.com/lwticias-lelet/assembler
 
 **Aluno:** Letícia Delfino de Araújo
 
-**Link Youtube**
+
 
 **Professor:** Sergio Souza
 **Linguagem:** Python 3
