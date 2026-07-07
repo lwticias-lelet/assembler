@@ -2,10 +2,10 @@ class Parser:
     def __init__(self, filename):
         self.instructions = []
 
-        with open(filename, "r") as file:
+        with open(filename, "r", encoding="utf-8") as file:
             for line in file:
-                line = line.split("//")[0].strip()
-                line = line.replace(" ", "")
+                line = line.split("//")[0]
+                line = "".join(line.split())
 
                 if line:
                     self.instructions.append(line)
@@ -30,19 +30,17 @@ class Parser:
         return "C_INSTRUCTION"
 
     def symbol(self):
-        instruction_type = self.instruction_type()
-
-        if instruction_type == "A_INSTRUCTION":
+        if self.instruction_type() == "A_INSTRUCTION":
             return self.current_instruction[1:]
 
-        if instruction_type == "L_INSTRUCTION":
+        if self.instruction_type() == "L_INSTRUCTION":
             return self.current_instruction[1:-1]
 
         return None
 
     def dest(self):
         if "=" in self.current_instruction:
-            return self.current_instruction.split("=")[0]
+            return self.current_instruction.split("=")[0].strip()
 
         return None
 
@@ -55,10 +53,10 @@ class Parser:
         if ";" in instruction:
             instruction = instruction.split(";")[0]
 
-        return instruction
+        return instruction.strip()
 
     def jump(self):
         if ";" in self.current_instruction:
-            return self.current_instruction.split(";")[1]
+            return self.current_instruction.split(";")[1].strip()
 
         return None
